@@ -34,3 +34,12 @@ Route::delete('products/{id}', [ProductController::class, 'destroy'])->middlewar
 
 // List Categories
 Route::get('categories', [CategoryController::class, 'index'])->middleware('throttle:90,1');
+
+// Create Categories
+Route::post('categories', [CategoryController::class, 'store'])->middleware('throttle:90,1', 'sanitize');
+
+// Update Categories
+Route::put('categories/{id}', [CategoryController::class, 'update'])->middleware('throttle:90,1', 'sanitize');
+
+// Delete Categories
+Route::delete('categories/{id}', [CategoryController::class, 'destroy'])->middleware('throttle:90,1');

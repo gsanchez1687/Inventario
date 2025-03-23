@@ -2,12 +2,7 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Symfony\Component\HttpFoundation\Response;
-
-class ProductRequest extends FormRequest
+class ProductRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -38,21 +33,15 @@ class ProductRequest extends FormRequest
         return [
             'category_id.required' => 'Category ID is required',
             'name.required' => 'Name is required',
+            'name.string' => 'Name must be a string',
+            'name.max' => 'Name must be less than 100 characters',
             'description.required' => 'Description is required',
+            'description.string' => 'Description must be a string',
+            'description.max' => 'Description must be less than 255 characters',
             'price.required' => 'Price is required',
+            'price.numeric' => 'Price must be a number',
             'stock.required' => 'Stock is required',
+            'stock.numeric' => 'Stock must be a number',
         ];
-    }
-
-    /**
-     * Handle a failed validation attempt.
-     */
-    protected function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(
-            response()->json([
-                'message' => 'Error validation',
-                'errors' => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY)
-        );
     }
 }
