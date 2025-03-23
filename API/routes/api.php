@@ -23,5 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // List products
 Route::get('products', [ProductController::class, 'index'])->middleware('throttle:90,1');
 
+// Create Product
+Route::post('products', [ProductController::class, 'store'])->middleware('throttle:90,1', 'sanitize');
+
+// Update Product
+Route::put('products/{id}', [ProductController::class, 'update'])->middleware('throttle:90,1', 'sanitize');
+
+// Delete Producto
+Route::delete('products/{id}', [ProductController::class, 'destroy'])->middleware('throttle:90,1');
+
 // List Categories
 Route::get('categories', [CategoryController::class, 'index'])->middleware('throttle:90,1');
