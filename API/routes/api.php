@@ -20,6 +20,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('products', [ProductController::class, 'index']);
+//List products
+Route::get('products', [ProductController::class, 'index'])->middleware('throttle:90,1');
 
-Route::get('categories', [CategoryController::class, 'index']);
+//List Categories
+Route::get('categories', [CategoryController::class, 'index'])->middleware('throttle:90,1');
