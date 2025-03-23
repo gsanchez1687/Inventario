@@ -2,7 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 
 class ProductRequest extends FormRequest
 {
@@ -39,5 +43,17 @@ class ProductRequest extends FormRequest
             'price.required' => 'Price is required',
             'stock.required' => 'Stock is required',
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'message' => 'Error validation',
+                'errors' => $validator->errors()], Response::HTTP_UNPROCESSABLE_ENTITY)
+        );
     }
 }
