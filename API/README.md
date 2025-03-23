@@ -45,4 +45,5 @@ php artisan serve --port=8000
 Laravel Larastan
 Laravel Pint
 Laravel Enlightn
+Laravel Telescope
 ```
