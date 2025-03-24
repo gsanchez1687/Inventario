@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -36,6 +36,20 @@ class CategoryController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function show(int $id)
+    {
+        try {
+            $categories = Category::findOrFail($id);
+
+            return response()->json($categories, Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->errors()], Response::HTTP_BAD_REQUEST);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     public function update(CategoryRequest $request, int $id)

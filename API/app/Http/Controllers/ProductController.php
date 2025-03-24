@@ -38,10 +38,18 @@ class ProductController extends Controller
         }
     }
 
-    public function show(int $id){
+    public function show(int $id)
+    {
+        try {
 
-        $product = Product::findOrFail($id);
-        return response()->json($product, Response::HTTP_OK);
+            $product = Product::findOrFail($id);
+
+            return response()->json($product, Response::HTTP_OK);
+        } catch (ValidationException $e) {
+            return response()->json(['error' => $e->errors()], Response::HTTP_BAD_REQUEST);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     public function update(ProductRequest $request, int $id)

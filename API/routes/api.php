@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +21,7 @@ Route::get('products', [ProductController::class, 'index'])->middleware('throttl
 // Create Product
 Route::post('products', [ProductController::class, 'store'])->middleware('throttle:90,1', 'sanitize');
 
-//Show Product
+// Show Product
 Route::get('products/{id}', [ProductController::class, 'show'])->middleware('throttle:90,1');
 
 // Update Product
@@ -33,6 +32,9 @@ Route::delete('products/{id}', [ProductController::class, 'destroy'])->middlewar
 
 // List Categories
 Route::get('categories', [CategoryController::class, 'index'])->middleware('throttle:90,1');
+
+// Show Categories
+Route::get('categories/{id}', [CategoryController::class, 'show'])->middleware('throttle:90,1');
 
 // Create Categories
 Route::post('categories', [CategoryController::class, 'store'])->middleware('throttle:90,1', 'sanitize');
