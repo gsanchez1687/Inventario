@@ -10,6 +10,12 @@ export default defineNuxtConfig({
         ]
     }
   },
+  css: [
+    'primevue/resources/themes/saga-blue/theme.css',
+    'primevue/resources/primevue.min.css',
+    'primeicons/primeicons.css',
+    'primeflex/primeflex.css'
+  ],
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
