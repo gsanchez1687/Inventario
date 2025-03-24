@@ -1,3 +1,5 @@
+![Banner](banner.png)
+
 # Requerimientos
 ```
 php >= 8.0
