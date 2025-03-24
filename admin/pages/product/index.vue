@@ -42,6 +42,26 @@
             </tr>
           </tbody>
         </table>
+        <div class="pagination-controls mt-3">
+          <button 
+            class="btn btn-sm btn-outline-primary me-2"
+            @click="previousPage"
+            :disabled="currentPage === 0"
+          >
+            Anterior
+          </button>
+          
+          <span v-if="totalPages > 0">
+            Página {{ currentPage + 1 }} de {{ totalPages }}
+          </span>
+          
+          <button 
+            class="btn btn-sm btn-outline-primary ms-2"
+            @click="nextPage"
+          >
+            Siguiente
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -52,7 +72,10 @@ export default {
   data() {
     return {
       products: [],
-      loading: true
+      loading: true,
+      currentPage: 0,
+      perPage: 10,
+      totalPages: 0
     }
   },
   mounted() {
@@ -61,17 +84,29 @@ export default {
   methods: {
     async fetchProducts() {
       try {
-        const response = await fetch('http://127.0.0.1:8000/api/products', {
+        const response = await fetch(`http://127.0.0.1:8000/api/products?per_page=${this.perPage}&page=${this.currentPage}`, {
           headers: {
             'token': '1234567890'
           }
         })
         const data = await response.json()
+        console.log('API Response:', data) // Debug
         this.products = data
+        this.totalPages = Math.ceil(data.length / this.perPage)
       } catch (error) {
         console.error('Error fetching products:', error)
       } finally {
         this.loading = false
+      }
+    },
+    nextPage() {
+        this.currentPage++
+        this.fetchProducts()
+    },
+    previousPage() {
+      if (this.currentPage > 0) {
+        this.currentPage--
+        this.fetchProducts()
       }
     }
   }
