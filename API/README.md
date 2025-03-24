@@ -46,4 +46,5 @@ Laravel Larastan
 Laravel Pint
 Laravel Enlightn
 Laravel Telescope
+Laravel jwt-auth
 ```

@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $products = Product::all();
+            $perPage = $request->query('per_page', 10);
+            $page = $request->query('page', 0);
+            $offset = $page * $perPage;
+
+            $products = Product::skip($offset)->take($perPage)->get();
 
             return response()->json($products, Response::HTTP_OK);
         } catch (\Exception $e) {

@@ -6,13 +6,18 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $categories = Category::all();
+            $perPage = $request->query('per_page', 10);
+            $page = $request->query('page', 0);
+            $offset = $page * $perPage;
+
+            $categories = Category::skip($offset)->take($perPage)->get();
 
             return response()->json($categories, Response::HTTP_OK);
         } catch (\Exception $e) {
