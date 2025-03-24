@@ -6,13 +6,19 @@ mysql >= 5.0
 
 # Caracteristicas
 ```
-Laravel 10
+Laravel v10
+Node v20
+Nuxt v3
 ```
 
-# Instalación
+# Instalación API
 
 ```
 git clone https://github.com/gsanchez1687/Inventario.git
+```
+
+```
+Entrar en la capeta API
 ```
 
 ```
@@ -47,4 +53,19 @@ Laravel Pint
 Laravel Enlightn
 Laravel Telescope
 Laravel jwt-auth
+```
+
+# Instalación Frontend
+
+```
+npm install
+```
+
+```
+npm run dev
+```
+
+```
+Se levanta el proyecto en el puerto 3000
+http://localhost:3000/
 ```
