@@ -36,7 +36,12 @@
               <td>S/ {{ product.price }}</td>
               <td>{{ product.stock }}</td>
               <td>
-                <button class="btn btn-sm btn-primary me-2">Editar</button>
+                <NuxtLink 
+                  :to="`/product/edit/${product.id}`"
+                  class="btn btn-sm btn-primary me-2"
+                >
+                  Editar
+                </NuxtLink>
                 <button class="btn btn-sm btn-primary">Eliminar</button>
               </td>
             </tr>

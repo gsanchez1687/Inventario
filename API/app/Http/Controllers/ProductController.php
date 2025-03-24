@@ -38,6 +38,12 @@ class ProductController extends Controller
         }
     }
 
+    public function show(int $id){
+
+        $product = Product::findOrFail($id);
+        return response()->json($product, Response::HTTP_OK);
+    }
+
     public function update(ProductRequest $request, int $id)
     {
         try {

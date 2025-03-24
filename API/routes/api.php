@@ -22,6 +22,9 @@ Route::get('products', [ProductController::class, 'index'])->middleware('throttl
 // Create Product
 Route::post('products', [ProductController::class, 'store'])->middleware('throttle:90,1', 'sanitize');
 
+//Show Product
+Route::get('products/{id}', [ProductController::class, 'show'])->middleware('throttle:90,1');
+
 // Update Product
 Route::put('products/{id}', [ProductController::class, 'update'])->middleware('throttle:90,1', 'sanitize');
 
