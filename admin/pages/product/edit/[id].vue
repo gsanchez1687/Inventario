@@ -17,7 +17,7 @@
           
           <div class="row">
             <div class="col-md-6 mb-3">
-              <label class="form-label">Precio (S/)</label>
+              <label class="form-label">Precio</label>
               <input v-model="form.price" type="number" step="0.01" class="form-control" required>
             </div>
             
@@ -64,6 +64,7 @@ export default {
     async loadProduct() {
       try {
         const response = await fetch(`http://127.0.0.1:8000/api/products/${this.$route.params.id}`, {
+          method: 'GET',
           headers: {
             'token': '1234567890'
           }

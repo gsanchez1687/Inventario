@@ -29,11 +29,11 @@
               </td>
             </tr>
             <tr v-for="(product, index) in products" :key="product.id">
-              <th scope="row">{{ index + 1 }}</th>
+              <th scope="row">{{ product.id }}</th>
               <td>{{ product.category?.name || 'N/A' }}</td>
               <td>{{ product.name }}</td>
               <td>{{ product.description }}</td>
-              <td>S/ {{ product.price }}</td>
+              <td>{{ product.price }}</td>
               <td>{{ product.stock }}</td>
               <td>
                 <NuxtLink 
@@ -42,7 +42,12 @@
                 >
                   Editar
                 </NuxtLink>
-                <button class="btn btn-sm btn-primary">Eliminar</button>
+                <button 
+                  class="btn btn-sm btn-primary" 
+                  @click="deleteProduct(product.id)"
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
           </tbody>
@@ -90,6 +95,7 @@ export default {
     async fetchProducts() {
       try {
         const response = await fetch(`http://127.0.0.1:8000/api/products?per_page=${this.perPage}&page=${this.currentPage}`, {
+          method: 'GET',
           headers: {
             'token': '1234567890'
           }
@@ -102,6 +108,23 @@ export default {
         console.error('Error fetching products:', error)
       } finally {
         this.loading = false
+      }
+    },
+    async deleteProduct(id) {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`, {
+          method: 'DELETE',
+          headers: {
+            'token': '1234567890'
+          }
+        })
+        if (response.ok) {
+          this.fetchProducts()
+        } else {
+          alert('Error al eliminar el producto')
+        }
+      } catch (error) {
+        console.error('Error al eliminar el producto:', error)
       }
     },
     nextPage() {

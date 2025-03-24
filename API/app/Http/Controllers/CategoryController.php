@@ -17,7 +17,7 @@ class CategoryController extends Controller
             $page = $request->query('page', 0);
             $offset = $page * $perPage;
 
-            $categories = Category::skip($offset)->take($perPage)->get();
+            $categories = Category::skip($offset)->take($perPage)->orderBy('id', 'DESC')->get();
 
             return response()->json($categories, Response::HTTP_OK);
         } catch (\Exception $e) {

@@ -17,7 +17,7 @@ class ProductController extends Controller
             $page = $request->query('page', 0);
             $offset = $page * $perPage;
 
-            $products = Product::with('category')->skip($offset)->take($perPage)->get();
+            $products = Product::with('category')->skip($offset)->take($perPage)->orderBy('id', 'DESC')->get();
 
             return response()->json($products, Response::HTTP_OK);
         } catch (\Exception $e) {
