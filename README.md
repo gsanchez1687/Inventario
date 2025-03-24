@@ -1,4 +1,4 @@
-![Banner](banner.png)
+![Banner](/capturas/banner.png)
 
 # Requerimientos
 ```
