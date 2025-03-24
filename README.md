@@ -26,6 +26,10 @@ composer install
 ```
 
 ```
+Cambiar el nombre del archivo env.example a .env es la misma copia del original
+```
+
+```
 php artisan key:generate
 ```
 
