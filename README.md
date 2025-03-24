@@ -13,6 +13,11 @@ Node v20
 Nuxt v3
 ```
 
+# Video
+```
+https://drive.google.com/file/d/1xY76GOkEfwQfZyupQltGc31_UFuhJYuI/view?usp=sharing
+```
+
 # Instalación API
 
 ```
