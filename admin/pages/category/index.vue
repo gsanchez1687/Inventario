@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Productos</h1>
+    <h1>Categorias</h1>
 
     <div class="card">
       <div class="card-header">
@@ -77,7 +77,6 @@
 export default {
   data() {
     return {
-      products: [],
       loading: true,
       currentPage: 0,
       perPage: 10,
