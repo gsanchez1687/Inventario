@@ -9,7 +9,7 @@ export default defineNuxtConfig({
             { src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js' }
         ]
     }
-},
+  },
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
@@ -17,6 +17,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     '@nuxt/fonts',
-    '@nuxt/scripts'
+    '@nuxt/scripts',
   ],
 })
