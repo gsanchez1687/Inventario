@@ -5,7 +5,12 @@
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Lista de Productos</h3>
-        <button class="btn btn-secondary">Agregar Producto</button>
+        <NuxtLink 
+  to="/product/create" 
+  class="btn btn-secondary"
+>
+  Agregar Producto
+</NuxtLink>
       </div>
       <div class="card-body">
         <table class="table table-striped table-hover table-bordered">
